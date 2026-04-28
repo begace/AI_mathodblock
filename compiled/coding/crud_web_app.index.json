@@ -1,0 +1,24 @@
+{
+  "id": "crud_web_app_basic",
+  "title": "CRUD Web App Basic Workflow",
+  "keywords": [
+    "crud",
+    "web",
+    "app",
+    "form",
+    "database",
+    "validation"
+  ],
+  "task_type": [
+    "coding",
+    "web-app",
+    "crud"
+  ],
+  "summary_compact": "Build a small create, read, update, delete web application with clear data contracts, validation, and focused tests.",
+  "paths": {
+    "source": "methodblocks/coding/crud_web_app.yaml",
+    "compact": "compiled/coding/crud_web_app.compact.md",
+    "graph": "compiled/coding/crud_web_app.graph.json"
+  },
+  "version": "0.1.0"
+}

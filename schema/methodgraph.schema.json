@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MethodGraph",
+  "type": "object",
+  "required": ["id", "nodes", "edges"],
+  "additionalProperties": false,
+  "properties": {
+    "id": {"type": "string"},
+    "nodes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "type", "label"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {"type": "string"},
+          "type": {"type": "string"},
+          "label": {"type": "string"}
+        }
+      }
+    },
+    "edges": {
+      "type": "array",
+      "items": {
+        "type": "array",
+        "minItems": 2,
+        "maxItems": 3
+      }
+    },
+    "contracts": {
+      "type": "array",
+      "items": {"type": "object"}
+    },
+    "failure_modes": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "verification": {
+      "type": "array",
+      "items": {"type": "string"}
+    }
+  }
+}

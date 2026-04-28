@@ -1,0 +1,98 @@
+{
+  "id": "cli_tool_basic",
+  "nodes": [
+    {
+      "id": "define_command_names_arguments_and_exit_codes",
+      "type": "schema",
+      "label": "Define command names, arguments, and exit codes."
+    },
+    {
+      "id": "separate_command_parsing_from_core_business_logic",
+      "type": "transform",
+      "label": "Separate command parsing from core business logic."
+    },
+    {
+      "id": "implement_pure_functions_for_the_core_operation",
+      "type": "transform",
+      "label": "Implement pure functions for the core operation."
+    },
+    {
+      "id": "convert_exceptions_into_clear_cli_error_messages",
+      "type": "transform",
+      "label": "Convert exceptions into clear CLI error messages."
+    },
+    {
+      "id": "return_nonzero_exit_codes_for_invalid_input_or_failed_operations",
+      "type": "transform",
+      "label": "Return nonzero exit codes for invalid input or failed operations."
+    },
+    {
+      "id": "add_tests_for_command_output_and_exit_codes",
+      "type": "test",
+      "label": "Add tests for command output and exit codes."
+    }
+  ],
+  "edges": [
+    [
+      "define_command_names_arguments_and_exit_codes",
+      "separate_command_parsing_from_core_business_logic"
+    ],
+    [
+      "separate_command_parsing_from_core_business_logic",
+      "implement_pure_functions_for_the_core_operation"
+    ],
+    [
+      "implement_pure_functions_for_the_core_operation",
+      "convert_exceptions_into_clear_cli_error_messages"
+    ],
+    [
+      "convert_exceptions_into_clear_cli_error_messages",
+      "return_nonzero_exit_codes_for_invalid_input_or_failed_operations"
+    ],
+    [
+      "return_nonzero_exit_codes_for_invalid_input_or_failed_operations",
+      "add_tests_for_command_output_and_exit_codes"
+    ]
+  ],
+  "contracts": [
+    {
+      "name": "parse_args",
+      "input": {
+        "argv": "list[string]"
+      },
+      "output": {
+        "args": "object"
+      }
+    },
+    {
+      "name": "run_command",
+      "input": {
+        "args": "object"
+      },
+      "output": {
+        "exit_code": "int"
+      }
+    },
+    {
+      "name": "main",
+      "input": {
+        "argv": "list[string]"
+      },
+      "output": {
+        "exit_code": "int"
+      }
+    }
+  ],
+  "failure_modes": [
+    "Missing required argument",
+    "Invalid path",
+    "Permission denied",
+    "Ambiguous command output"
+  ],
+  "verification": [
+    "Help text renders",
+    "Valid command exits zero",
+    "Invalid command exits nonzero",
+    "Error message is actionable"
+  ]
+}

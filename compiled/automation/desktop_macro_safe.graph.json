@@ -1,0 +1,99 @@
+{
+  "id": "desktop_macro_safe",
+  "nodes": [
+    {
+      "id": "confirm_the_user_s_intended_target_application_and_task",
+      "type": "transform",
+      "label": "Confirm the user's intended target application and task."
+    },
+    {
+      "id": "inspect_visible_ui_state_before_acting",
+      "type": "inspect",
+      "label": "Inspect visible UI state before acting."
+    },
+    {
+      "id": "prefer_stable_accessibility_selectors_over_coordinates",
+      "type": "transform",
+      "label": "Prefer stable accessibility selectors over coordinates."
+    },
+    {
+      "id": "perform_one_reversible_action_at_a_time",
+      "type": "transform",
+      "label": "Perform one reversible action at a time."
+    },
+    {
+      "id": "re_check_state_after_each_action",
+      "type": "verify",
+      "label": "Re-check state after each action."
+    },
+    {
+      "id": "stop_and_report_when_the_visible_state_does_not_match_expectatio",
+      "type": "transform",
+      "label": "Stop and report when the visible state does not match expectations."
+    }
+  ],
+  "edges": [
+    [
+      "confirm_the_user_s_intended_target_application_and_task",
+      "inspect_visible_ui_state_before_acting"
+    ],
+    [
+      "inspect_visible_ui_state_before_acting",
+      "prefer_stable_accessibility_selectors_over_coordinates"
+    ],
+    [
+      "prefer_stable_accessibility_selectors_over_coordinates",
+      "perform_one_reversible_action_at_a_time"
+    ],
+    [
+      "perform_one_reversible_action_at_a_time",
+      "re_check_state_after_each_action"
+    ],
+    [
+      "re_check_state_after_each_action",
+      "stop_and_report_when_the_visible_state_does_not_match_expectatio"
+    ]
+  ],
+  "contracts": [
+    {
+      "name": "inspect_state",
+      "input": {
+        "app_name": "string"
+      },
+      "output": {
+        "state": "dict"
+      }
+    },
+    {
+      "name": "perform_action",
+      "input": {
+        "state": "dict",
+        "action": "dict"
+      },
+      "output": {
+        "result": "dict"
+      }
+    },
+    {
+      "name": "verify_state",
+      "input": {
+        "expected": "dict",
+        "actual": "dict"
+      },
+      "output": {
+        "success": "bool"
+      }
+    }
+  ],
+  "failure_modes": [
+    "Target window not focused",
+    "UI state changed between steps",
+    "Button disabled",
+    "Action would be irreversible"
+  ],
+  "verification": [
+    "Dry-run plan is visible",
+    "State check happens before action",
+    "Macro stops on mismatch"
+  ]
+}

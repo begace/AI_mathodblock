@@ -1,0 +1,71 @@
+id: excel_processor_basic
+title: Excel Processor Basic Workflow
+summary: Build programs that read spreadsheet files, normalize columns, validate rows, transform records, and export a clean workbook.
+task_type:
+  - coding
+  - data-processing
+  - spreadsheet
+keywords:
+  - excel
+  - xlsx
+  - spreadsheet
+  - inventory
+  - cleanup
+  - duplicate
+good_for:
+  - Excel inventory cleanup
+  - Duplicate SKU merge
+  - Column name normalization
+  - Spreadsheet report generation
+bad_for:
+  - Realtime collaborative editing
+  - Distributed big data processing
+forbidden_for:
+  - Unauthorized data access
+  - Privacy scraping
+  - Security bypass
+procedure:
+  - Inspect the input file format and sheet names.
+  - Define the required columns.
+  - Normalize column headers.
+  - Convert rows into internal records.
+  - Validate missing values, duplicates, and type errors.
+  - Transform rows according to the task.
+  - Export the result workbook.
+  - Test with representative sample files.
+contract_pattern:
+  functions:
+    - name: load_workbook_data
+      input:
+        path: string
+      output:
+        rows: list[dict]
+    - name: normalize_columns
+      input:
+        rows: list[dict]
+      output:
+        rows: list[dict]
+    - name: validate_rows
+      input:
+        rows: list[dict]
+      output:
+        report: dict
+    - name: export_workbook
+      input:
+        rows: list[dict]
+        output_path: string
+      output:
+        success: bool
+failure_modes:
+  - Unexpected headers
+  - Numeric values stored as strings
+  - Empty rows mixed with data
+  - Destination file locked by another program
+verification:
+  - Normal sample file
+  - Empty file
+  - Missing required column
+  - Duplicate row sample
+version: 0.1.0
+author: human
+license: MIT

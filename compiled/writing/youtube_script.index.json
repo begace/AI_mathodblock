@@ -1,0 +1,23 @@
+{
+  "id": "youtube_script_basic",
+  "title": "YouTube Script Basic Workflow",
+  "keywords": [
+    "youtube",
+    "script",
+    "video",
+    "outline",
+    "narration"
+  ],
+  "task_type": [
+    "writing",
+    "script",
+    "content"
+  ],
+  "summary_compact": "Write a structured video script with a clear premise, retention-aware outline, grounded claims, and a concise call to action.",
+  "paths": {
+    "source": "methodblocks/writing/youtube_script.yaml",
+    "compact": "compiled/writing/youtube_script.compact.md",
+    "graph": "compiled/writing/youtube_script.graph.json"
+  },
+  "version": "0.1.0"
+}

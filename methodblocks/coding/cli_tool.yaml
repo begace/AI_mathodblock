@@ -1,0 +1,61 @@
+id: cli_tool_basic
+title: CLI Tool Basic Workflow
+summary: Build a local command line tool with predictable arguments, clear errors, reusable functions, and tests around command behavior.
+task_type:
+  - coding
+  - cli
+  - tooling
+keywords:
+  - cli
+  - command
+  - argparse
+  - terminal
+  - local
+good_for:
+  - Local automation commands
+  - File conversion utilities
+  - Developer workflow helpers
+bad_for:
+  - Long-running network services
+  - Interactive full-screen terminal apps
+forbidden_for:
+  - Credential harvesting
+  - Security bypass
+  - Platform abuse
+procedure:
+  - Define command names, arguments, and exit codes.
+  - Separate command parsing from core business logic.
+  - Implement pure functions for the core operation.
+  - Convert exceptions into clear CLI error messages.
+  - Return nonzero exit codes for invalid input or failed operations.
+  - Add tests for command output and exit codes.
+contract_pattern:
+  functions:
+    - name: parse_args
+      input:
+        argv: list[string]
+      output:
+        args: object
+    - name: run_command
+      input:
+        args: object
+      output:
+        exit_code: int
+    - name: main
+      input:
+        argv: list[string]
+      output:
+        exit_code: int
+failure_modes:
+  - Missing required argument
+  - Invalid path
+  - Permission denied
+  - Ambiguous command output
+verification:
+  - Help text renders
+  - Valid command exits zero
+  - Invalid command exits nonzero
+  - Error message is actionable
+version: 0.1.0
+author: human
+license: MIT

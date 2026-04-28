@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CompactMethodBlock",
+  "type": "object",
+  "required": ["id", "title", "flow"],
+  "additionalProperties": false,
+  "properties": {
+    "id": {"type": "string"},
+    "title": {"type": "string"},
+    "use_when": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "avoid": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "forbid": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "flow": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "contracts": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "fail": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "verify": {
+      "type": "array",
+      "items": {"type": "string"}
+    }
+  }
+}

@@ -1,0 +1,69 @@
+id: crud_web_app_basic
+title: CRUD Web App Basic Workflow
+summary: Build a small create, read, update, delete web application with clear data contracts, validation, and focused tests.
+task_type:
+  - coding
+  - web-app
+  - crud
+keywords:
+  - crud
+  - web
+  - app
+  - form
+  - database
+  - validation
+good_for:
+  - Admin data entry tools
+  - Small internal dashboards
+  - Form-backed resource management
+bad_for:
+  - High-frequency realtime collaboration
+  - Complex distributed transactions
+forbidden_for:
+  - Authentication bypass
+  - Access control bypass
+  - Data exfiltration
+procedure:
+  - Define the resource fields and validation rules.
+  - Choose the storage model and persistence boundary.
+  - Implement create and read flows first.
+  - Implement update and delete flows with explicit confirmation where needed.
+  - Add server-side validation and clear error responses.
+  - Add UI states for loading, empty, error, and success.
+  - Test the happy path and validation failures.
+contract_pattern:
+  functions:
+    - name: create_record
+      input:
+        payload: dict
+      output:
+        record: dict
+    - name: list_records
+      input:
+        filters: dict
+      output:
+        records: list[dict]
+    - name: update_record
+      input:
+        record_id: string
+        payload: dict
+      output:
+        record: dict
+    - name: delete_record
+      input:
+        record_id: string
+      output:
+        success: bool
+failure_modes:
+  - Missing required fields
+  - Duplicate unique field
+  - Stale update payload
+  - Delete called on a missing record
+verification:
+  - Create valid record
+  - Reject invalid payload
+  - Update existing record
+  - Delete existing record
+version: 0.1.0
+author: human
+license: MIT

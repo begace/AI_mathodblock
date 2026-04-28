@@ -1,0 +1,24 @@
+{
+  "id": "excel_processor_basic",
+  "title": "Excel Processor Basic Workflow",
+  "keywords": [
+    "excel",
+    "xlsx",
+    "spreadsheet",
+    "inventory",
+    "cleanup",
+    "duplicate"
+  ],
+  "task_type": [
+    "coding",
+    "data-processing",
+    "spreadsheet"
+  ],
+  "summary_compact": "Build programs that read spreadsheet files, normalize columns, validate rows, transform records, and export a clean workbook.",
+  "paths": {
+    "source": "methodblocks/coding/excel_processor.yaml",
+    "compact": "compiled/coding/excel_processor.compact.md",
+    "graph": "compiled/coding/excel_processor.graph.json"
+  },
+  "version": "0.1.0"
+}

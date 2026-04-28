@@ -1,0 +1,63 @@
+id: youtube_script_basic
+title: YouTube Script Basic Workflow
+summary: Write a structured video script with a clear premise, retention-aware outline, grounded claims, and a concise call to action.
+task_type:
+  - writing
+  - script
+  - content
+keywords:
+  - youtube
+  - script
+  - video
+  - outline
+  - narration
+good_for:
+  - Educational video scripts
+  - Product walkthrough scripts
+  - Short documentary outlines
+bad_for:
+  - Fabricated news
+  - Medical or legal advice without expert review
+forbidden_for:
+  - Defamation
+  - Plagiarism
+  - Misleading impersonation
+procedure:
+  - Define the target audience and viewer promise.
+  - Write a one-sentence premise.
+  - Outline the hook, context, main beats, and payoff.
+  - Mark claims that need sources or verification.
+  - Draft narration in a spoken style.
+  - Add visual notes only where they clarify the script.
+  - Review for unsupported claims and pacing issues.
+contract_pattern:
+  functions:
+    - name: build_outline
+      input:
+        premise: string
+        audience: string
+      output:
+        outline: list[dict]
+    - name: draft_script
+      input:
+        outline: list[dict]
+      output:
+        script: string
+    - name: fact_check_claims
+      input:
+        script: string
+      output:
+        report: dict
+failure_modes:
+  - Weak hook
+  - Unsupported factual claim
+  - Overlong intro
+  - Visual notes overwhelm narration
+verification:
+  - Premise is clear
+  - Claims are marked for review
+  - Intro reaches the point quickly
+  - Ending has a concise call to action
+version: 0.1.0
+author: human
+license: MIT

@@ -1,0 +1,23 @@
+{
+  "id": "cli_tool_basic",
+  "title": "CLI Tool Basic Workflow",
+  "keywords": [
+    "cli",
+    "command",
+    "argparse",
+    "terminal",
+    "local"
+  ],
+  "task_type": [
+    "coding",
+    "cli",
+    "tooling"
+  ],
+  "summary_compact": "Build a local command line tool with predictable arguments, clear errors, reusable functions, and tests around command behavior.",
+  "paths": {
+    "source": "methodblocks/coding/cli_tool.yaml",
+    "compact": "compiled/coding/cli_tool.compact.md",
+    "graph": "compiled/coding/cli_tool.graph.json"
+  },
+  "version": "0.1.0"
+}

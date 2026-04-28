@@ -1,0 +1,126 @@
+{
+  "id": "excel_processor_basic",
+  "nodes": [
+    {
+      "id": "inspect_the_input_file_format_and_sheet_names",
+      "type": "inspect",
+      "label": "Inspect the input file format and sheet names."
+    },
+    {
+      "id": "define_the_required_columns",
+      "type": "schema",
+      "label": "Define the required columns."
+    },
+    {
+      "id": "normalize_column_headers",
+      "type": "transform",
+      "label": "Normalize column headers."
+    },
+    {
+      "id": "convert_rows_into_internal_records",
+      "type": "transform",
+      "label": "Convert rows into internal records."
+    },
+    {
+      "id": "validate_missing_values_duplicates_and_type_errors",
+      "type": "verify",
+      "label": "Validate missing values, duplicates, and type errors."
+    },
+    {
+      "id": "transform_rows_according_to_the_task",
+      "type": "transform",
+      "label": "Transform rows according to the task."
+    },
+    {
+      "id": "export_the_result_workbook",
+      "type": "output",
+      "label": "Export the result workbook."
+    },
+    {
+      "id": "test_with_representative_sample_files",
+      "type": "test",
+      "label": "Test with representative sample files."
+    }
+  ],
+  "edges": [
+    [
+      "inspect_the_input_file_format_and_sheet_names",
+      "define_the_required_columns"
+    ],
+    [
+      "define_the_required_columns",
+      "normalize_column_headers"
+    ],
+    [
+      "normalize_column_headers",
+      "convert_rows_into_internal_records"
+    ],
+    [
+      "convert_rows_into_internal_records",
+      "validate_missing_values_duplicates_and_type_errors"
+    ],
+    [
+      "validate_missing_values_duplicates_and_type_errors",
+      "transform_rows_according_to_the_task"
+    ],
+    [
+      "transform_rows_according_to_the_task",
+      "export_the_result_workbook"
+    ],
+    [
+      "export_the_result_workbook",
+      "test_with_representative_sample_files"
+    ]
+  ],
+  "contracts": [
+    {
+      "name": "load_workbook_data",
+      "input": {
+        "path": "string"
+      },
+      "output": {
+        "rows": "list[dict]"
+      }
+    },
+    {
+      "name": "normalize_columns",
+      "input": {
+        "rows": "list[dict]"
+      },
+      "output": {
+        "rows": "list[dict]"
+      }
+    },
+    {
+      "name": "validate_rows",
+      "input": {
+        "rows": "list[dict]"
+      },
+      "output": {
+        "report": "dict"
+      }
+    },
+    {
+      "name": "export_workbook",
+      "input": {
+        "rows": "list[dict]",
+        "output_path": "string"
+      },
+      "output": {
+        "success": "bool"
+      }
+    }
+  ],
+  "failure_modes": [
+    "Unexpected headers",
+    "Numeric values stored as strings",
+    "Empty rows mixed with data",
+    "Destination file locked by another program"
+  ],
+  "verification": [
+    "Normal sample file",
+    "Empty file",
+    "Missing required column",
+    "Duplicate row sample"
+  ]
+}

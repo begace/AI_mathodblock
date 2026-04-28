@@ -1,0 +1,63 @@
+id: desktop_macro_safe
+title: Safe Desktop Macro Workflow
+summary: Design a local desktop automation macro with explicit user intent, reversible actions, visible state checks, and safe failure handling.
+task_type:
+  - automation
+  - desktop
+  - safety
+keywords:
+  - desktop
+  - macro
+  - automation
+  - click
+  - keyboard
+  - safety
+good_for:
+  - Repetitive local UI workflows
+  - Data entry with visible confirmation
+  - Screenshot-guided desktop steps
+bad_for:
+  - Hidden background account actions
+  - High-risk irreversible operations
+forbidden_for:
+  - Capturing credentials
+  - Bypassing access controls
+  - Evading platform rules
+procedure:
+  - Confirm the user's intended target application and task.
+  - Inspect visible UI state before acting.
+  - Prefer stable accessibility selectors over coordinates.
+  - Perform one reversible action at a time.
+  - Re-check state after each action.
+  - Stop and report when the visible state does not match expectations.
+contract_pattern:
+  functions:
+    - name: inspect_state
+      input:
+        app_name: string
+      output:
+        state: dict
+    - name: perform_action
+      input:
+        state: dict
+        action: dict
+      output:
+        result: dict
+    - name: verify_state
+      input:
+        expected: dict
+        actual: dict
+      output:
+        success: bool
+failure_modes:
+  - Target window not focused
+  - UI state changed between steps
+  - Button disabled
+  - Action would be irreversible
+verification:
+  - Dry-run plan is visible
+  - State check happens before action
+  - Macro stops on mismatch
+version: 0.1.0
+author: human
+license: MIT

@@ -1,0 +1,117 @@
+{
+  "id": "crud_web_app_basic",
+  "nodes": [
+    {
+      "id": "define_the_resource_fields_and_validation_rules",
+      "type": "schema",
+      "label": "Define the resource fields and validation rules."
+    },
+    {
+      "id": "choose_the_storage_model_and_persistence_boundary",
+      "type": "transform",
+      "label": "Choose the storage model and persistence boundary."
+    },
+    {
+      "id": "implement_create_and_read_flows_first",
+      "type": "inspect",
+      "label": "Implement create and read flows first."
+    },
+    {
+      "id": "implement_update_and_delete_flows_with_explicit_confirmation_whe",
+      "type": "transform",
+      "label": "Implement update and delete flows with explicit confirmation where needed."
+    },
+    {
+      "id": "add_server_side_validation_and_clear_error_responses",
+      "type": "transform",
+      "label": "Add server-side validation and clear error responses."
+    },
+    {
+      "id": "add_ui_states_for_loading_empty_error_and_success",
+      "type": "inspect",
+      "label": "Add UI states for loading, empty, error, and success."
+    },
+    {
+      "id": "test_the_happy_path_and_validation_failures",
+      "type": "test",
+      "label": "Test the happy path and validation failures."
+    }
+  ],
+  "edges": [
+    [
+      "define_the_resource_fields_and_validation_rules",
+      "choose_the_storage_model_and_persistence_boundary"
+    ],
+    [
+      "choose_the_storage_model_and_persistence_boundary",
+      "implement_create_and_read_flows_first"
+    ],
+    [
+      "implement_create_and_read_flows_first",
+      "implement_update_and_delete_flows_with_explicit_confirmation_whe"
+    ],
+    [
+      "implement_update_and_delete_flows_with_explicit_confirmation_whe",
+      "add_server_side_validation_and_clear_error_responses"
+    ],
+    [
+      "add_server_side_validation_and_clear_error_responses",
+      "add_ui_states_for_loading_empty_error_and_success"
+    ],
+    [
+      "add_ui_states_for_loading_empty_error_and_success",
+      "test_the_happy_path_and_validation_failures"
+    ]
+  ],
+  "contracts": [
+    {
+      "name": "create_record",
+      "input": {
+        "payload": "dict"
+      },
+      "output": {
+        "record": "dict"
+      }
+    },
+    {
+      "name": "list_records",
+      "input": {
+        "filters": "dict"
+      },
+      "output": {
+        "records": "list[dict]"
+      }
+    },
+    {
+      "name": "update_record",
+      "input": {
+        "record_id": "string",
+        "payload": "dict"
+      },
+      "output": {
+        "record": "dict"
+      }
+    },
+    {
+      "name": "delete_record",
+      "input": {
+        "record_id": "string"
+      },
+      "output": {
+        "success": "bool"
+      }
+    }
+  ],
+  "failure_modes": [
+    "Missing required fields",
+    "Duplicate unique field",
+    "Stale update payload",
+    "Delete called on a missing record"
+  ],
+  "verification": [
+    "Create valid record",
+    "Reject invalid payload",
+    "Update existing record",
+    "Delete existing record"
+  ]
+}

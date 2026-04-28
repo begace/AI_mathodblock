@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MethodBlock",
+  "type": "object",
+  "required": ["id", "title", "summary", "procedure"],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_-]*$"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "summary": {
+      "type": "string",
+      "minLength": 1
+    },
+    "task_type": {
+      "type": "array",
+      "items": {"type": "string"},
+      "uniqueItems": true
+    },
+    "keywords": {
+      "type": "array",
+      "items": {"type": "string"},
+      "uniqueItems": true
+    },
+    "good_for": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "bad_for": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "forbidden_for": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "procedure": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "minItems": 1
+    },
+    "contract_pattern": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "functions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["name"],
+            "additionalProperties": true,
+            "properties": {
+              "name": {"type": "string", "minLength": 1},
+              "input": {"type": "object"},
+              "output": {"type": "object"}
+            }
+          }
+        }
+      }
+    },
+    "failure_modes": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "verification": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "version": {
+      "type": "string"
+    },
+    "author": {
+      "type": "string"
+    },
+    "license": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "id": "desktop_macro_safe",
+  "title": "Safe Desktop Macro Workflow",
+  "keywords": [
+    "desktop",
+    "macro",
+    "automation",
+    "click",
+    "keyboard",
+    "safety"
+  ],
+  "task_type": [
+    "automation",
+    "desktop",
+    "safety"
+  ],
+  "summary_compact": "Design a local desktop automation macro with explicit user intent, reversible actions, visible state checks, and safe failure handling.",
+  "paths": {
+    "source": "methodblocks/automation/desktop_macro_safe.yaml",
+    "compact": "compiled/automation/desktop_macro_safe.compact.md",
+    "graph": "compiled/automation/desktop_macro_safe.graph.json"
+  },
+  "version": "0.1.0"
+}
