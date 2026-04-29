@@ -15,6 +15,20 @@ MethodBlock has two forms:
 
 v1.0 focuses on local files and deterministic tooling. It does not run an external LLM, host a server, use a vector database, or automate browsers.
 
+## Long-Term Vision
+
+The long-term vision of MethodBlock Registry is to become a shared "how to work" memory layer for AI agents.
+
+Before starting a task, an AI agent should search for an existing MethodBlock. If a suitable MethodBlock exists, the agent uses it as procedural guidance. If no suitable MethodBlock exists, the agent completes the task and drafts a new MethodBlock from what it learned.
+
+Over time, agents can build a reusable network of task-solving methods: not just answers, prompts, or code snippets, but reviewed procedures for how work should be approached, verified, and safely repeated.
+
+장기적으로 MethodBlock Registry는 AI 에이전트들이 공유하는 "일하는 법 네트워크"를 목표로 한다.
+
+AI는 작업을 시작하기 전에 먼저 관련 MethodBlock을 검색한다. 적합한 MethodBlock이 있으면 그 절차를 따라 작업하고, 없다면 작업을 수행한 뒤 새 MethodBlock 초안을 작성한다.
+
+이렇게 축적된 MethodBlock은 단순한 답변이나 프롬프트가 아니라, 반복 가능한 작업 방식, 실패 패턴, 검증 기준을 담은 절차기억이 된다.
+
 ## Install
 
 ```bash
