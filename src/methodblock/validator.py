@@ -10,7 +10,8 @@ import json
 from jsonschema import Draft202012Validator
 from jsonschema.exceptions import ValidationError
 
-from .loader import load_yaml
+from .loader import discover_methodblocks, duplicate_ids, load_yaml
+from .models import ValidationReport
 
 
 DEFAULT_SCHEMA_PATH = Path("schema/methodblock.schema.json")
@@ -51,6 +52,33 @@ def validate_file(
     data = load_yaml(path)
     schema = load_schema(schema_path)
     return data, iter_errors(data, schema)
+
+
+def validate_all(
+    methodblocks_root: str | Path = "methodblocks",
+    schema_path: str | Path = DEFAULT_SCHEMA_PATH,
+) -> list[ValidationReport]:
+    """Validate every MethodBlock source file and include duplicate-id errors."""
+
+    schema = load_schema(schema_path)
+    reports: list[ValidationReport] = []
+    for path in discover_methodblocks(methodblocks_root):
+        try:
+            data = load_yaml(path)
+            errors = [format_error(error) for error in iter_errors(data, schema)]
+        except Exception as exc:
+            errors = [str(exc)]
+        reports.append(ValidationReport(path=path.as_posix(), valid=not errors, errors=errors))
+
+    duplicates = duplicate_ids(methodblocks_root)
+    if duplicates:
+        duplicate_paths = {path for paths in duplicates.values() for path in paths}
+        for report in reports:
+            if report.path in duplicate_paths:
+                ids = [method_id for method_id, paths in duplicates.items() if report.path in paths]
+                report.errors.append(f"duplicate id: {', '.join(ids)}")
+                object.__setattr__(report, "valid", False)
+    return reports
 
 
 def format_error(error: ValidationError) -> str:

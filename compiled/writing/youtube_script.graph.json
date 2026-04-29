@@ -1,5 +1,6 @@
 {
   "id": "youtube_script_basic",
+  "version": "1.0.0",
   "nodes": [
     {
       "id": "define_the_target_audience_and_viewer_promise",

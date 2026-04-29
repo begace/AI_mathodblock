@@ -1,5 +1,6 @@
 {
   "id": "cli_tool_basic",
+  "version": "1.0.0",
   "nodes": [
     {
       "id": "define_command_names_arguments_and_exit_codes",

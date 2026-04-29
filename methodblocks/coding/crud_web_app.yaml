@@ -64,6 +64,23 @@ verification:
   - Reject invalid payload
   - Update existing record
   - Delete existing record
-version: 0.1.0
+examples:
+  - task: Build a small CRUD app for managing internal project records.
+    expected_use: Define resource contracts, implement CRUD flows, and test validation failures.
+model_notes:
+  works_well_with:
+    - code models with web framework familiarity
+  struggles_with:
+    - unclear authorization requirements
+lineage:
+  derived_from: null
+  replaces: null
+created_by:
+  type: human
+  name: initial-author
+tags:
+  - web
+  - crud
+version: 1.0.0
 author: human
 license: MIT

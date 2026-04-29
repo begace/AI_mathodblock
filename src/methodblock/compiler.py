@@ -142,6 +142,7 @@ def build_graph(block: dict[str, Any]) -> dict[str, Any]:
 
     return {
         "id": block["id"],
+        "version": str(block.get("version", "")),
         "nodes": nodes,
         "edges": edges,
         "contracts": [function for function in functions if isinstance(function, dict)],
@@ -188,8 +189,10 @@ def build_index(
     return {
         "id": block["id"],
         "title": block.get("title", block["id"]),
+        "version": str(block.get("version", "")),
         "keywords": _as_text_list(block.get("keywords")),
         "task_type": _as_text_list(block.get("task_type")),
+        "good_for": _as_text_list(block.get("good_for")),
         "summary_compact": summary_compact(str(block.get("summary", ""))),
         "paths": {
             "source": Path(source_path).as_posix(),
@@ -233,3 +236,10 @@ def write_compiled(
     paths["graph"].write_text(json.dumps(artifact["graph"], ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     paths["index"].write_text(json.dumps(artifact["index"], ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     return paths
+
+
+def compiled_complete(source_path: str | Path, methodblocks_root: str | Path = "methodblocks") -> bool:
+    """Return whether all compiled artifacts exist for a source MethodBlock."""
+
+    paths = compiled_paths(source_path, methodblocks_root)
+    return all(path.exists() for path in paths.values())

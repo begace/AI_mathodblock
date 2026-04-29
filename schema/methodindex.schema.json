@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MethodIndex",
+  "type": "object",
+  "required": ["id", "title", "version", "keywords", "task_type", "summary_compact", "paths"],
+  "additionalProperties": false,
+  "properties": {
+    "id": {"type": "string"},
+    "title": {"type": "string"},
+    "version": {"type": "string"},
+    "keywords": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "task_type": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "good_for": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "summary_compact": {"type": "string"},
+    "paths": {
+      "type": "object",
+      "required": ["source", "compact", "graph"],
+      "additionalProperties": false,
+      "properties": {
+        "source": {"type": "string"},
+        "compact": {"type": "string"},
+        "graph": {"type": "string"}
+      }
+    }
+  }
+}

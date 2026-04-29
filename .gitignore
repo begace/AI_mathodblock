@@ -10,4 +10,5 @@ dist/
 *.egg-info/
 .DS_Store
 MethodBlock_Registry_Codex_Spec_KR.docx
+MethodBlock_Registry_v1_Work_Order_KR.docx
 ~$*.docx

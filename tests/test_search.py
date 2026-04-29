@@ -7,7 +7,7 @@ def test_score_methodblock_prefers_matching_keywords():
 
     score = score_methodblock(block, "clean duplicate SKUs in an Excel xlsx file")
 
-    assert score >= 6
+    assert 0.5 <= score <= 1.0
 
 
 def test_search_methodblocks_returns_sorted_matches():

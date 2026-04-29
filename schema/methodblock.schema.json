@@ -2,7 +2,20 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "MethodBlock",
   "type": "object",
-  "required": ["id", "title", "summary", "procedure"],
+  "required": [
+    "id",
+    "title",
+    "summary",
+    "version",
+    "task_type",
+    "keywords",
+    "good_for",
+    "bad_for",
+    "forbidden_for",
+    "procedure",
+    "failure_modes",
+    "verification"
+  ],
   "additionalProperties": false,
   "properties": {
     "id": {
@@ -20,24 +33,29 @@
     "task_type": {
       "type": "array",
       "items": {"type": "string"},
-      "uniqueItems": true
+      "uniqueItems": true,
+      "minItems": 1
     },
     "keywords": {
       "type": "array",
       "items": {"type": "string"},
-      "uniqueItems": true
+      "uniqueItems": true,
+      "minItems": 1
     },
     "good_for": {
       "type": "array",
-      "items": {"type": "string"}
+      "items": {"type": "string"},
+      "minItems": 1
     },
     "bad_for": {
       "type": "array",
-      "items": {"type": "string"}
+      "items": {"type": "string"},
+      "minItems": 1
     },
     "forbidden_for": {
       "type": "array",
-      "items": {"type": "string"}
+      "items": {"type": "string"},
+      "minItems": 1
     },
     "procedure": {
       "type": "array",
@@ -65,11 +83,13 @@
     },
     "failure_modes": {
       "type": "array",
-      "items": {"type": "string"}
+      "items": {"type": "string"},
+      "minItems": 1
     },
     "verification": {
       "type": "array",
-      "items": {"type": "string"}
+      "items": {"type": "string"},
+      "minItems": 1
     },
     "version": {
       "type": "string"
@@ -77,8 +97,44 @@
     "author": {
       "type": "string"
     },
+    "created_by": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "type": {"type": "string"},
+        "name": {"type": "string"}
+      }
+    },
+    "examples": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "task": {"type": "string"},
+          "expected_use": {"type": "string"}
+        }
+      }
+    },
+    "model_notes": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "lineage": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "derived_from": {"type": ["string", "null"]},
+        "replaces": {"type": ["string", "null"]}
+      }
+    },
     "license": {
       "type": "string"
+    },
+    "tags": {
+      "type": "array",
+      "items": {"type": "string"},
+      "uniqueItems": true
     }
   }
 }

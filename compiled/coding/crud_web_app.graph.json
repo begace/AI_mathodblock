@@ -1,5 +1,6 @@
 {
   "id": "crud_web_app_basic",
+  "version": "1.0.0",
   "nodes": [
     {
       "id": "define_the_resource_fields_and_validation_rules",

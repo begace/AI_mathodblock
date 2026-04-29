@@ -1,6 +1,7 @@
 {
   "id": "cli_tool_basic",
   "title": "CLI Tool Basic Workflow",
+  "version": "1.0.0",
   "keywords": [
     "cli",
     "command",
@@ -13,11 +14,15 @@
     "cli",
     "tooling"
   ],
+  "good_for": [
+    "Local automation commands",
+    "File conversion utilities",
+    "Developer workflow helpers"
+  ],
   "summary_compact": "Build a local command line tool with predictable arguments, clear errors, reusable functions, and tests around command behavior.",
   "paths": {
     "source": "methodblocks/coding/cli_tool.yaml",
     "compact": "compiled/coding/cli_tool.compact.md",
     "graph": "compiled/coding/cli_tool.graph.json"
-  },
-  "version": "0.1.0"
+  }
 }

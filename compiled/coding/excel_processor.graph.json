@@ -1,5 +1,6 @@
 {
   "id": "excel_processor_basic",
+  "version": "1.0.0",
   "nodes": [
     {
       "id": "inspect_the_input_file_format_and_sheet_names",

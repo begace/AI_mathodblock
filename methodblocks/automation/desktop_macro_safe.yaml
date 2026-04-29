@@ -23,6 +23,9 @@ forbidden_for:
   - Capturing credentials
   - Bypassing access controls
   - Evading platform rules
+  - Online game cheating
+  - Anti-cheat bypass
+  - Security control bypass
 procedure:
   - Confirm the user's intended target application and task.
   - Inspect visible UI state before acting.
@@ -58,6 +61,24 @@ verification:
   - Dry-run plan is visible
   - State check happens before action
   - Macro stops on mismatch
-version: 0.1.0
+examples:
+  - task: Automate a visible desktop workflow that copies approved rows from one app into another.
+    expected_use: Inspect state before every action and stop on mismatch.
+model_notes:
+  works_well_with:
+    - accessibility-aware desktop automation agents
+  struggles_with:
+    - hidden UI state
+    - irreversible actions
+lineage:
+  derived_from: null
+  replaces: null
+created_by:
+  type: human
+  name: initial-author
+tags:
+  - desktop
+  - safety
+version: 1.0.0
 author: human
 license: MIT

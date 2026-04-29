@@ -15,7 +15,7 @@ Do not contribute MethodBlocks that enable:
 
 ## Required Safety Metadata
 
-Every MethodBlock should include `forbidden_for` entries that make misuse boundaries explicit.
+Every MethodBlock must include `forbidden_for` entries that make misuse boundaries explicit.
 
 Automation-related MethodBlocks should also:
 

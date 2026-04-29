@@ -58,6 +58,24 @@ verification:
   - Claims are marked for review
   - Intro reaches the point quickly
   - Ending has a concise call to action
-version: 0.1.0
+examples:
+  - task: Write a YouTube script for a product walkthrough.
+    expected_use: Build a retention-aware outline, mark factual claims, and draft spoken narration.
+model_notes:
+  works_well_with:
+    - long-context writing models
+  struggles_with:
+    - unsupported factual claims
+    - unclear target audience
+lineage:
+  derived_from: null
+  replaces: null
+created_by:
+  type: human
+  name: initial-author
+tags:
+  - writing
+  - script
+version: 1.0.0
 author: human
 license: MIT

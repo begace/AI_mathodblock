@@ -1,6 +1,7 @@
 {
   "id": "excel_processor_basic",
   "title": "Excel Processor Basic Workflow",
+  "version": "1.0.0",
   "keywords": [
     "excel",
     "xlsx",
@@ -14,11 +15,16 @@
     "data-processing",
     "spreadsheet"
   ],
+  "good_for": [
+    "Excel inventory cleanup",
+    "Duplicate SKU merge",
+    "Column name normalization",
+    "Spreadsheet report generation"
+  ],
   "summary_compact": "Build programs that read spreadsheet files, normalize columns, validate rows, transform records, and export a clean workbook.",
   "paths": {
     "source": "methodblocks/coding/excel_processor.yaml",
     "compact": "compiled/coding/excel_processor.compact.md",
     "graph": "compiled/coding/excel_processor.graph.json"
-  },
-  "version": "0.1.0"
+  }
 }

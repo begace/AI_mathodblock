@@ -2,10 +2,11 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "MethodGraph",
   "type": "object",
-  "required": ["id", "nodes", "edges"],
+  "required": ["id", "version", "nodes", "edges"],
   "additionalProperties": false,
   "properties": {
     "id": {"type": "string"},
+    "version": {"type": "string"},
     "nodes": {
       "type": "array",
       "items": {

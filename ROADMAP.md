@@ -1,37 +1,33 @@
 # Roadmap
 
-## v0.1
+## v1.0 Completed
 
-- Local file format
-- JSON Schema validation
+- Local-first source MethodBlock format
+- JSON Schema validation and duplicate-id checks
 - Compile source YAML into compact, graph, and index artifacts
-- Keyword search
-- Prompt generation
-- Unit tests for core behavior
+- Keyword search over source fields
+- Prompt generation in markdown, plain, and json formats
+- Template-based draft generation
+- New MethodBlock template creation
+- Typer/Rich CLI
+- GitHub Actions test workflow
 
-## v0.2
+## v1.1
 
-- Draft MethodBlock generation from completed task summaries
-- Better duplicate-id checks
-- Optional linting for MethodBlock quality and safety metadata
+- MethodBlock quality linting
+- Stronger checks for examples, safety metadata, and vague procedure steps
+- Golden-output tests for compiled artifacts
+- Optional import/export helpers for curated MethodBlock packs
 
-## v0.3
+## v1.2
 
 - Local embedding index experiment
 - Similarity search while keeping source YAML as the reviewable source of truth
+- Better multilingual search behavior
 
-## v0.4
-
-- MethodBlock lineage and version metadata
-- Quality review checklist
-- Compatibility notes for agent runtimes
-
-## v0.5
+## Later
 
 - Remote registry pull/push concepts
 - Signed releases for curated MethodBlock packs
-
-## v0.6
-
 - Agent workflow integration: search before work, draft after work
 - Human review workflow for generated MethodBlock drafts

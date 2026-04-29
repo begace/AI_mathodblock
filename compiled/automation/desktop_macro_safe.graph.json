@@ -1,5 +1,6 @@
 {
   "id": "desktop_macro_safe",
+  "version": "1.0.0",
   "nodes": [
     {
       "id": "confirm_the_user_s_intended_target_application_and_task",

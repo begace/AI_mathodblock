@@ -1,102 +1,132 @@
 # MethodBlock Registry
 
-MethodBlock Registry is a lightweight procedural memory registry for AI agents.
+MethodBlock Registry v1.0 is a local-first procedural memory toolkit for AI agents, providing a human-readable MethodBlock format, schema validation, AI-optimized compilation, local search, and prompt injection.
 
 This is not a prompt collection. A MethodBlock is a reusable procedural memory unit with applicability rules, task-solving steps, function contracts, failure modes, and verification criteria.
+
+이 프로젝트는 단순 프롬프트 모음이 아닙니다. MethodBlock은 적용 조건, 문제 해결 절차, 함수 계약, 실패 패턴, 검증 기준을 포함한 재사용 가능한 절차기억 단위입니다.
+
+## What It Does
 
 MethodBlock has two forms:
 
 1. Source MethodBlock: human-readable YAML for review, editing, and contribution.
 2. Compiled MethodBlock: AI-optimized `compact.md`, `graph.json`, and `index.json` files for retrieval, prompt injection, and agent planning.
 
-이 프로젝트는 단순 프롬프트 모음이 아닙니다. MethodBlock은 적용 조건, 문제 해결 절차, 함수 계약, 실패 패턴, 검증 기준을 포함한 재사용 가능한 절차기억 단위입니다.
+v1.0 focuses on local files and deterministic tooling. It does not run an external LLM, host a server, use a vector database, or automate browsers.
 
-## v0.1 Scope
-
-Implemented in this version:
-
-- YAML MethodBlock source format
-- JSON Schema validation
-- Compiler from source YAML to `compact.md`, `graph.json`, and `index.json`
-- Local CLI commands for list, show, search, validate, compile, compile-all, and prompt
-- Keyword scoring search
-- Prompt generation from a task and compact MethodBlock
-
-Not included in v0.1:
-
-- Remote registry server
-- Agent-to-agent auto upload
-- Automatic rating system
-- Embedding search
-- Multi-agent execution
-- External LLM API calls
-
-## Install For Development
+## Install
 
 ```bash
 python -m pip install -e .
 ```
 
-The source layout also works without installation by setting `PYTHONPATH=src`.
+During development, you can also run the package directly:
 
 ```bash
-PYTHONPATH=src python -m methodblock.cli list
+PYTHONPATH=src python -m methodblock.cli --help
 ```
 
 ## CLI Usage
 
 ```bash
+methodblock init
 methodblock list
 methodblock show excel_processor_basic
-methodblock search "clean duplicate SKUs in Excel"
+methodblock show excel_processor_basic --source
+methodblock show excel_processor_basic --compact
+methodblock show excel_processor_basic --graph
 methodblock validate methodblocks/coding/excel_processor.yaml
+methodblock validate-all
 methodblock compile methodblocks/coding/excel_processor.yaml
 methodblock compile-all
-methodblock prompt excel_processor_basic --task "Build a Python Excel cleaner"
+methodblock search "build an excel inventory cleanup tool"
+methodblock prompt excel_processor_basic --task "Build a Python tool that merges duplicate SKUs in an Excel file"
+methodblock prompt excel_processor_basic --task "Build a Python Excel cleaner" --format json --output prompt.json
+methodblock draft --from-text notes.txt
+methodblock new payment_system_basic
 ```
 
-## Project Layout
+## MethodBlock YAML
 
-```text
-methodblocks/       Human-readable source YAML MethodBlocks
-schema/             JSON Schemas for source and compiled artifacts
-compiled/           Generated compact/graph/index artifacts
-examples/           Example tasks, prompts, and outputs
-src/methodblock/    Python package and CLI implementation
-tests/              Unit tests
-```
+Source files live under `methodblocks/`. v1.0 requires these fields:
 
-## Source MethodBlock
+- `id`
+- `title`
+- `summary`
+- `version`
+- `task_type`
+- `keywords`
+- `good_for`
+- `bad_for`
+- `forbidden_for`
+- `procedure`
+- `failure_modes`
+- `verification`
 
-Source MethodBlocks live under `methodblocks/`. Each file should describe:
+Supported optional fields include `contract_pattern`, `examples`, `model_notes`, `lineage`, `author`, `created_by`, `license`, and `tags`.
 
-- applicability: `good_for`, `bad_for`, `forbidden_for`
-- procedure: ordered human-readable steps
-- function contracts: optional reusable implementation shape
-- failure modes: common ways the task can fail
-- verification: checks or tests expected for safe reuse
+## Compilation
 
-## Compiled Artifacts
-
-`methodblock compile` writes three artifacts under `compiled/`:
+`methodblock compile-all` writes generated artifacts under `compiled/`:
 
 - `*.compact.md`: compact prompt-injection form
-- `*.graph.json`: procedure graph, contracts, failure modes, verification
+- `*.graph.json`: structured procedure graph
 - `*.index.json`: searchable metadata and artifact paths
 
-Generated files are reproducible from source YAML. Review and edit the YAML source, then compile again.
+Generated artifacts are reproducible from source YAML. Review and edit the YAML source, then compile again.
 
 ## Search
 
-v0.1 search intentionally stays simple:
+v1.0 search is local and explainable. It scores:
 
-- keyword match: +3
-- task type match: +2
-- title token match: +1
-- summary token match: +1
+- `id`
+- `title`
+- `summary`
+- `keywords`
+- `task_type`
+- `good_for`
+- `procedure`
 
-This keeps behavior transparent and avoids embedding or remote service dependencies.
+Scores are normalized to `0.00` through `1.00` for CLI output.
+
+## Prompt Generation
+
+`methodblock prompt` combines a task with a compact MethodBlock and emits Markdown, plain text, or JSON:
+
+```bash
+methodblock prompt excel_processor_basic \
+  --task "Build a Python tool that merges duplicate SKUs in an Excel file" \
+  --format markdown
+```
+
+## Drafting
+
+`methodblock draft --from-text <path>` creates a conservative YAML draft under `drafts/`. It is template-based and does not call an LLM. Unknown fields are filled with TODO-style placeholders so a human can review and refine the draft before moving it into `methodblocks/`.
+
+## Repository Layout
+
+```text
+methodblocks/       Human-readable source YAML MethodBlocks
+compiled/           Generated compact/graph/index artifacts
+schema/             JSON Schemas for source and compiled artifacts
+examples/           Example tasks, prompts, and outputs
+drafts/             Local draft MethodBlocks
+src/methodblock/    Python package and CLI implementation
+tests/              Unit and CLI smoke tests
+.github/workflows/  CI configuration
+```
 
 ## Safety
 
-MethodBlocks must not be used for credential theft, unauthorized data access, access control bypass, malware, evasion, or platform abuse. Every source MethodBlock should include `forbidden_for` entries, and contributors should read `SECURITY.md` before adding automation-related content.
+MethodBlocks must not be used for credential theft, unauthorized data access, access control bypass, malware, evasion, payment bypass, DRM bypass, anti-cheat bypass, or platform abuse. Every source MethodBlock must include `forbidden_for`.
+
+## Development Checks
+
+```bash
+methodblock validate-all
+methodblock compile-all
+pytest
+```
+
+GitHub Actions runs the same core checks on push and pull request.
